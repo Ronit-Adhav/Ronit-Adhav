@@ -6,11 +6,11 @@
 <body>
   <h2>Login</h2>
   <form id="loginForm">
-    <label>Username:</label>
+    <label for="username">Username:</label><br>
     <input type="text" id="username" required><br><br>
-    <label>Password:</label>
+    <label for="password">Password:</label><br>
     <input type="password" id="password" required><br><br>
-    <button type="submit">Login</button>
+    <button type="submit">Submit</button>
   </form>
 
   <script>
@@ -20,14 +20,14 @@
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
 
-      fetch("https://script.google.com/macros/s/AKfycbxP2yaGd6XHDpvbr9MIsAaKemDrYk0dB5zTt6nYjh3b0AqsD6rxhURzXwvb8OJZueUV/exec", {
+      fetch("[YOUR_WEB_APP_URL_HERE](https://script.google.com/macros/s/AKfycbwyvJga4XXug4AEmdI3E7r7sAkUQ0v0t0ailX9TYt6jSKDrHRCkj1aRC6KNtdT-fSBz/exec)", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" }
       })
-      .then(res => res.text())
-      .then(response => {
-        alert("Response from server: " + response);
+      .then(response => response.text())
+      .then(responseData => {
+        alert("Response: " + responseData);
         document.getElementById("loginForm").reset();
       })
       .catch(err => alert("Error: " + err));
@@ -35,5 +35,3 @@
   </script>
 </body>
 </html>
-
-
